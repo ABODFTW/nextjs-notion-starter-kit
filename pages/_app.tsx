@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import * as Fathom from 'fathom-client'
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
+import PlausibleProvider from 'next-plausible'
 import posthog from 'posthog-js'
 // used for code syntax highlighting (optional)
 import 'prismjs/themes/prism-coy.css'
@@ -61,5 +62,9 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  return (
+    <PlausibleProvider domain='abod.dev'>
+      <Component {...pageProps} />
+    </PlausibleProvider>
+  )
 }
